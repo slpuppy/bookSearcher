@@ -3,6 +3,7 @@
 import Foundation
 
 extension URLSession {
+    
     func dataTask<T>(_ forType: T.Type, endpoint: ApiEndpoint, completion: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask where T: Decodable {
         dataTask(endpoint: endpoint) {  result in
             switch result {

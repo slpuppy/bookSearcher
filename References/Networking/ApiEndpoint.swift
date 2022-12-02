@@ -25,11 +25,12 @@ extension ApiEndpoint {
 
 // MARK: - URL building
 extension ApiEndpoint {
+    
     private var url: URL {
         var components = URLComponents()
         components.scheme = "https"
         components.host = domain
-       
+        
         if let query = query {
             components.queryItems = query.map { URLQueryItem(name: $0.key, value: $0.value) }
         }
@@ -39,12 +40,12 @@ extension ApiEndpoint {
                 
                 
         else { fatalError("Invalid url! \(self)") }
-
-     
         
-        print("URL IS", url)
-                return url
-            }
+        
+        
+        //        print("URL IS", url)
+        return url
+    }
     
     
     var request: URLRequest {

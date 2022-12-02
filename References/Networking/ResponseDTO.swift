@@ -9,7 +9,8 @@ struct ResponseDTO<T>: Decodable where T: Decodable {
     }
     
    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+       let container = try decoder.container(keyedBy: CodingKeys.self)
         let statusContainer = try container.nestedContainer(keyedBy: ApiStatusCodingKeys.self, forKey: .status)
         let isSuccessful = try statusContainer.decode(Bool.self, forKey: .success)
         

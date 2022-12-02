@@ -13,7 +13,7 @@ struct MyBookshelfView: View {
    // let myBooks: [Book] = BookStoreMock.books
     
   //  @State var books = [Book]()
-    @ObservedObject var viewModel = BookListViewModel()
+    @StateObject var viewModel = BookListViewModel()
     
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
@@ -28,6 +28,7 @@ struct MyBookshelfView: View {
                         
                         Image(systemName: "magnifyingglass")
                         TextField("Search", text: $viewModel.searchText)
+                            .onChange(of: viewModel.searchText, perform: viewModel.onUserTyped)
                     }.padding()
                     
                 }
@@ -37,21 +38,16 @@ struct MyBookshelfView: View {
                 
                 ScrollView{
                     LazyVGrid(columns: columns){
-                        
                         ForEach(viewModel.books) { book in
-                            BookCell(title: book.titulo)
+                            BookCell(book: book)
+                                .padding()
                         }.aspectRatio(1, contentMode: .fill)
                     }.padding()
                 }
             }
             .navigationTitle("My Books")
-        }.onAppear{
-            if viewModel.searchText != "" {
-                viewModel.fetchSearchResults()
-            }
-                
         }
-    
+        .onAppear(perform: viewModel.fetchSearchResults)
     }
 }
 
