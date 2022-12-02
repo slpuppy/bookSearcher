@@ -10,11 +10,11 @@ import SwiftUI
 struct MyBookshelfView: View {
     
     
-    let myBooks: [Book] = BookStoreMock.books
+   // let myBooks: [Book] = BookStoreMock.books
     
-    @State var books = [Book]()
-    @StateObject private var viewModel = BookListViewModel()
-    @State var searchBarText = ""
+  //  @State var books = [Book]()
+    @ObservedObject var viewModel = BookListViewModel()
+    
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
@@ -27,7 +27,7 @@ struct MyBookshelfView: View {
                     HStack{
                         
                         Image(systemName: "magnifyingglass")
-                        TextField("Search", text: $searchBarText)
+                        TextField("Search", text: $viewModel.searchText)
                     }.padding()
                     
                 }
@@ -38,26 +38,20 @@ struct MyBookshelfView: View {
                 ScrollView{
                     LazyVGrid(columns: columns){
                         
-                        ForEach(myBooks) { book in
+                        ForEach(viewModel.books) { book in
                             BookCell(title: book.titulo)
                         }.aspectRatio(1, contentMode: .fill)
-                        
-                        
-                        
                     }.padding()
                 }
-                
-                
             }
             .navigationTitle("My Books")
         }.onAppear{
-            
-            
-            if searchBarText != "" {
+            if viewModel.searchText != "" {
                 viewModel.fetchSearchResults()
             }
-            
+                
         }
+    
     }
 }
 
