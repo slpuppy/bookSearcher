@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct FindBooksView: View {
-    
-    
-   // let myBooks: [Book] = BookStoreMock.books
-    
-  //  @State var books = [Book]()
+
     @StateObject var viewModel = BookListViewModel()
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
@@ -35,15 +31,19 @@ struct FindBooksView: View {
                 .padding()
                 
                 ScrollView{
-                    LazyVGrid(columns: columns){
-                        ForEach(viewModel.books) { book in
+                    
+                    ForEach(viewModel.books) { book in
+                        
+                        NavigationLink(destination: BookDetailsView(book: book)) {
                             BookCell(book: book)
-                                .padding()
-                        }.aspectRatio(1, contentMode: .fill)
-                    }.padding()
+                        }.buttonStyle(.plain)
+                            .padding(20)
+                        
+                    }
+                    
                 }
             }
-            .navigationTitle("My Books")
+            .navigationTitle("Find Books")
         }
         .onAppear(perform: viewModel.fetchSearchResults)
     }

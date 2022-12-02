@@ -1,10 +1,3 @@
-//
-//  ReferencesApp.swift
-//  References
-//
-//  Created by Gabriel Puppi on 30/11/22.
-//
-
 import SwiftUI
 
 @main

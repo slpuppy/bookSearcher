@@ -20,15 +20,15 @@ struct ContentView: View {
         
         
         TabView(selection: $tab){
-            HomeView().tabItem {
-                Label("", systemImage: "house")
+            FindBooksView().tabItem {
+                Label("", systemImage: "magnifyingglass")
             }.tag(Tab.home)
-                .navigationTitle("Home")
+                .navigationTitle("Find Books")
             
-            MyBookshelfView().tabItem {
+            LikedBooksView().tabItem {
                 Label("", systemImage: "books.vertical")
             }.tag(Tab.books)
-                .navigationTitle("My Books")
+                .navigationTitle("Saved Books")
             
             
             
