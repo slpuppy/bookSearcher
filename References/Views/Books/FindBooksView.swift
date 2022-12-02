@@ -7,14 +7,13 @@
 
 import SwiftUI
 
-struct MyBookshelfView: View {
+struct FindBooksView: View {
     
     
    // let myBooks: [Book] = BookStoreMock.books
     
   //  @State var books = [Book]()
     @StateObject var viewModel = BookListViewModel()
-    
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
@@ -30,7 +29,6 @@ struct MyBookshelfView: View {
                         TextField("Search", text: $viewModel.searchText)
                             .onChange(of: viewModel.searchText, perform: viewModel.onUserTyped)
                     }.padding()
-                    
                 }
                 .cornerRadius(50)
                 .frame(height: 60)
@@ -53,6 +51,6 @@ struct MyBookshelfView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        MyBookshelfView()
+        FindBooksView()
     }
 }

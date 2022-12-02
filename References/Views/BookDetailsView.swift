@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct BookDetailsView: View {
     
     @State var searchBarText = ""
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
@@ -56,6 +56,6 @@ struct HomeView: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        BookDetailsView()
     }
 }
