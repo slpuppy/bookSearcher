@@ -10,7 +10,7 @@ class BookListViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var books = [Book]()
     @Published var likedBooks = [LikedBook]()
-
+    
     var timer: Timer?
     
     func fetchSearchResults() {
@@ -46,12 +46,11 @@ class BookListViewModel: ObservableObject {
         }
         
     }
-  func saveBookToUserDefaults(book: Book) {
+    func saveBookToUserDefaults(book: Book) {
         
         let savedBooks = fetchLikedBooks()
-      
-        let book = LikedBook(titulo: book.titulo, subtitulo: book.subtitulo, sinopse: book.sinopse)
-       
+        let book = LikedBook(titulo: book.titulo, subtitulo: book.subtitulo ?? "", sinopse: book.sinopse, liked: true)
+        
         var likedBooks = [book]
         
         do {
@@ -69,19 +68,36 @@ class BookListViewModel: ObservableObject {
         var likedBooks = [LikedBook]()
         if let data = UserDefaults.standard.data(forKey: "likedBooks") {
             do {
-                 let decoder = JSONDecoder()
-
-                 let books = try decoder.decode([LikedBook].self, from: data)
-                 likedBooks = books
-                 self.likedBooks = likedBooks
-             } catch {
-                 print("Unable to Decode Notes (\(error))")
-             }
+                let decoder = JSONDecoder()
+                
+                let books = try decoder.decode([LikedBook].self, from: data)
+                likedBooks = books
+                self.likedBooks = likedBooks
+            } catch {
+                print("Unable to Decode Notes (\(error))")
+            }
         }
         return likedBooks
     }
     
-    
-    
+    func removeBookFromLiked(book: LikedBook){
+        let savedBooks = fetchLikedBooks()
+        
+        var bookToRemove = book
+        
+        bookToRemove.liked = false
+        
+        let likedBooks = savedBooks.filter({ $0.titulo != book.titulo })
+        
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(likedBooks)
+            UserDefaults.standard.set(data, forKey: "likedBooks")
+            print("removed")
+        } catch {
+            print("Unable to Encode Note (\(error))")
+        }
+        
+    }
 }
 

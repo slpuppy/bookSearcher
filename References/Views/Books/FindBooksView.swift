@@ -30,17 +30,25 @@ struct FindBooksView: View {
                 .frame(height: 60)
                 .padding()
                 
-                ScrollView{
-                    
-                    ForEach(viewModel.books) { book in
+                if viewModel.searchText.isEmpty {
+                    Spacer()
+                    Text("Start searching books!")
+                        .foregroundColor(Color("tabAccent"))
+                    Spacer()
+                } else if viewModel.books.count > 0 {
+                    ScrollView{
                         
-                        NavigationLink(destination: BookDetailsView(book: book)) {
-                            BookCell(book: book)
-                        }.buttonStyle(.plain)
-                            .padding(20)
-                        
+                        ForEach(viewModel.books) { book in
+                            NavigationLink(destination: BookDetailsView(book: book)) {
+                                BookCell(book: book)
+                            }.buttonStyle(.plain)
+                                .padding(20)
+                        }
                     }
-                    
+                } else {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
                 }
             }
             .navigationTitle("Find Books")

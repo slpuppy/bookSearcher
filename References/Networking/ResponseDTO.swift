@@ -18,7 +18,6 @@ struct ResponseDTO<T>: Decodable where T: Decodable {
             let message = try statusContainer.decode(String.self, forKey: .message)
             throw ApiError.custom(message)
         }
-        
         payload = try .init(from: decoder)
     }
 }
