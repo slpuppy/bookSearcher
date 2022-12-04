@@ -5,7 +5,6 @@ enum BookEndpoint: ApiEndpoint {
     case title(String)
     case author(String)
 
-    
     var path: String {
         switch self {
         case .title:
@@ -27,7 +26,7 @@ enum BookEndpoint: ApiEndpoint {
     var method: HTTPMethod {
         switch self {
         case .title,
-            .author:
+             .author:
             return .get
         }
     }

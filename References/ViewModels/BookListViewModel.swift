@@ -77,6 +77,7 @@ class BookListViewModel: ObservableObject {
                 print("Unable to Decode Notes (\(error))")
             }
         }
+        
         return likedBooks
     }
     
