@@ -17,16 +17,16 @@ struct BookDetailsView: View {
     var body: some View {
         
         VStack(alignment: .leading){
-            Text(book.titulo.uppercased())
+            Text(book.title.uppercased())
                 .font(.system(size: 22))
                 .bold()
                
-            Text(book.subtitulo ?? "")
+            Text(book.subtitle ?? "")
                 .italic()
                 .font(.system(size: 16))
             
-            if book.contribuicao.first != nil {
-                Text("\(book.contribuicao[0]?.nome ?? "") \(book.contribuicao[0]?.sobrenome ?? "")")
+            if book.contributors.first != nil {
+                Text("\(book.contributors[0]?.name ?? "") \(book.contributors[0]?.lastName ?? "")")
                     .font(.system(size: 14))
                     .bold()
                     .padding(.bottom, 24)
@@ -34,7 +34,7 @@ struct BookDetailsView: View {
                
             Spacer()
             ScrollView{
-                Text(book.sinopse)
+                Text(book.synopsis)
             }
         }.padding(20)
        

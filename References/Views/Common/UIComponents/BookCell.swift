@@ -20,11 +20,11 @@ struct BookCell: View {
                 .cornerRadius(12)
             
             VStack(alignment: .leading){
-                Text(book.titulo)
+                Text(book.title)
                     .font(.system(size: 14)).bold()
                 HStack{
-                    if book.contribuicao.first != nil {
-                        Text("\(book.contribuicao[0]?.nome ?? "") \(book.contribuicao[0]?.sobrenome ?? "")")
+                    if book.contributors.first != nil {
+                        Text("\(book.contributors[0]?.name ?? "") \(book.contributors[0]?.lastName ?? "")")
                             .font(.system(size: 11))
                         Spacer()
                     }

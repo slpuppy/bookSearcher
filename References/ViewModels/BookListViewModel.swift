@@ -49,7 +49,7 @@ class BookListViewModel: ObservableObject {
     func saveBookToUserDefaults(book: Book) {
         
         let savedBooks = fetchLikedBooks()
-        let book = LikedBook(titulo: book.titulo, subtitulo: book.subtitulo ?? "", sinopse: book.sinopse, liked: true)
+        let book = LikedBook(title: book.title, subtitle: book.subtitle ?? "", synopsis: book.synopsis, liked: true)
         
         var likedBooks = [book]
         
@@ -88,7 +88,7 @@ class BookListViewModel: ObservableObject {
         
         bookToRemove.liked = false
         
-        let likedBooks = savedBooks.filter({ $0.titulo != book.titulo })
+        let likedBooks = savedBooks.filter({ $0.title != book.title })
         
         do {
             let encoder = JSONEncoder()

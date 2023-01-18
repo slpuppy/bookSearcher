@@ -5,11 +5,11 @@ import Foundation
 
 struct BookImages: Decodable {
     
-    let imagem_primeira_capa: BookImagesSizes?
+    let coverImage: BookImagesSizes?
 
     enum CodingKeys: String, CodingKey {
     
-      case imagem_primeira_capa
+      case coverImage = "imagem_primeira_capa"
      
     }
 }

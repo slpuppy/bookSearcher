@@ -15,9 +15,9 @@ struct LikedBookCell: View {
             
             VStack(alignment: .leading){
                 
-                Text(likedBook.titulo)
+                Text(likedBook.title)
                     .font(.system(size: 14)).bold()
-                Text(likedBook.subtitulo)
+                Text(likedBook.subtitle)
                     .font(.system(size: 11))
                 Spacer()
               

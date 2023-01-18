@@ -5,14 +5,15 @@ import Foundation
 
 struct BookWriter: Decodable {
     
-    let nome: String
-    let sobrenome: String
+    let name: String
+    let lastName: String
     
   
     
     enum CodingKeys: String, CodingKey {
     
-      case nome, sobrenome
+      case name = "nome"
+      case lastName = "sobrenome"
      
     }
     
